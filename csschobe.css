@@ -1,0 +1,179 @@
+﻿body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background-color: #0d0d2b; /* Màu nền tối cho bầu trời */
+}
+
+.sky {
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at bottom, #1d2f4d 0%, #0d0d2b 100%);
+    position: relative;
+}
+
+/* --- TRĂNG (MOON) --- */
+.moon {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 40px 40px, #fff 0%, #ffeb99 60%, #ffd700 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(255, 255, 153, 0.8);
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+/* --- NGÔI SAO (STARS) --- */
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0; /* Bắt đầu ẩn, JS sẽ làm nó lấp lánh */
+    animation: twinkle 4s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* --- LỒNG ĐÈN (LANTERN) --- */
+.lantern-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Không chặn click vào các thành phần khác */
+}
+
+.lantern {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 80px;
+    animation: sway 5s ease-in-out infinite alternate; /* Hiệu ứng đung đưa */
+}
+
+    .lantern .body {
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 69, 0, 0.8); /* Màu đỏ cam */
+        border: 3px solid gold;
+        border-radius: 10px;
+        box-shadow: 0 0 15px orange, inset 0 0 10px yellow;
+    }
+
+    .lantern .light {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background: yellow;
+        border-radius: 50%;
+        opacity: 0.8;
+        box-shadow: 0 0 10px 5px yellow, 0 0 20px 10px orange;
+        z-index: 10;
+    }
+
+    .lantern .tassel {
+        width: 5px;
+        height: 30px;
+        background: gold;
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    }
+
+@keyframes sway {
+    0% {
+        transform: translate(-50%, 0) rotate(-5deg);
+    }
+
+    100% {
+        transform: translate(-50%, 0) rotate(5deg);
+    }
+}
+
+/* --- THIỆP CHÚC (GREETING CARD) --- */
+.greeting-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 192, 203, 0.95);
+    color: #333;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px;
+    z-index: 100;
+    transition: all 0.5s ease-in-out;
+}
+
+    .greeting-card.closed .open-text {
+        display: none;
+    }
+
+    .greeting-card.open #openButton {
+        display: none;
+    }
+
+    .greeting-card.closed .open-text {
+        display: none;
+    }
+
+    .greeting-card.closed h2,
+    .greeting-card.closed h1,
+    .greeting-card.closed p {
+        display: none;
+    }
+
+    .greeting-card.closed {
+        width: 150px;
+        height: 50px;
+        padding: 20px;
+        background-color: #ff99aa; /* Màu hồng khi đóng */
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        cursor: pointer;
+    }
+
+#openButton {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+    #openButton:hover {
+        background-color: #ff6347;
+    }
+
+.signature {
+    margin-top: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color: #ff4500;
+}
